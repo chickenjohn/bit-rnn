@@ -2,7 +2,7 @@ import tensorflow as tf
 #from tensorflow.python.ops import rnn_cell_impl
 from tensorflow.contrib.rnn.python.ops import core_rnn_cell
 
-import bit_utils
+from BitRnn import bit_utils
 
 
 class BitGRUCell(tf.nn.rnn_cell.GRUCell):
@@ -67,9 +67,9 @@ class BitGRUCell(tf.nn.rnn_cell.GRUCell):
 class BitLSTMCell(tf.nn.rnn_cell.BasicLSTMCell):
 
     def __init__(self, num_units, w_bit, f_bit, forget_bias=1.0,
-                 state_is_tuple=True, activation=tf.sigmoid, reuse=None):
+                 state_is_tuple=True, activation=tf.sigmoid, reuse=None, name=None):
         super(BitLSTMCell, self).__init__(
-            num_units, forget_bias, state_is_tuple, activation, reuse)
+            num_units, forget_bias, state_is_tuple, activation, reuse, name)
         self._w_bit = w_bit
         self._f_bit = f_bit
         self._linear = None
